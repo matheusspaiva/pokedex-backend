@@ -20,6 +20,12 @@ app.get("/", (req, res) => {
     });
 });
 
+app.get("/api", (req, res) => {
+    res.json({
+        message: "Pokedex API funcionando!"
+    });
+});
+
 
 app.use(routes);
 
