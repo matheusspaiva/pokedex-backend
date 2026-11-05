@@ -4,14 +4,21 @@ import { connectDatabase } from "./config/database";
 
 dotenv.config();
 
-const PORT = process.env.PORT || 3000;
+export default app;
 
 const startServer = async () => {
     await connectDatabase();
 
-    app.listen(PORT, () => {
-        console.log(`Servidor rodando na porta ${PORT}`);
+    const port = Number(process.env.PORT) || 3000;
+
+    app.listen(port, () => {
+        console.log(`Servidor rodando na porta ${port}`);
     });
 };
 
-startServer();
+if (process.env.VERCEL !== "1") {
+    startServer().catch((error) => {
+        console.error("Erro ao iniciar o servidor:", error);
+        process.exitCode = 1;
+    });
+}

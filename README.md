@@ -220,6 +220,17 @@ O código é enviado pela query string. A rota retorna os Pokémon capturados pe
 
 ## Como executar o projeto
 
+### Deploy na Vercel
+
+O arquivo `vercel.json` configura `src/api/index.ts` como uma função serverless. Na Vercel, cadastre estas variáveis em **Settings > Environment Variables** (para o ambiente desejado):
+
+```env
+MONGO_URI=mongodb+srv://usuario:senha@cluster.mongodb.net/pokedex
+JWT_SECRET=uma_chave_forte_e_secreta
+```
+
+Depois do deploy, teste `https://seu-projeto.vercel.app/` e use essa URL como base da API no frontend. Também é necessário liberar o acesso de rede ao MongoDB Atlas para a Vercel (por exemplo, `0.0.0.0/0`, aplicando autenticação forte e as restrições recomendadas pelo Atlas).
+
 ### Pré-requisitos
 
 - Node.js
