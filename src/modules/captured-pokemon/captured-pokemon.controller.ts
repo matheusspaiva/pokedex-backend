@@ -92,10 +92,17 @@ class CapturedPokemonController {
             const capturedPokemon =
                 await capturedPokemonService.list(user.id.toString());
 
+
+                const data = {
+                    user: {
+                       name: user.name
+                    },
+                    capturedPokemon
+                }
             return apiResponseOK(
                 res,
                 "Pokémon capturados encontrados com sucesso!",
-                capturedPokemon
+                data
             );
 
         } catch (error) {
